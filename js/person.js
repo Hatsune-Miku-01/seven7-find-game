@@ -48,7 +48,7 @@ function darkenColor(hex, amount = 0.35) {
   return `rgb(${r}, ${g}, ${b})`;
 }
 
-function personSVG(poseName, { size = 80, color = '#ffffff', strokeWidth = 13, outline = true } = {}) {
+function personSVG(poseName, { color = '#ffffff', strokeWidth = 13, outline = true } = {}) {
   const pose = POSES[poseName] || POSES.standing;
   const seg = (a, b) => `<line x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}" />`;
 
@@ -74,7 +74,7 @@ function personSVG(poseName, { size = 80, color = '#ffffff', strokeWidth = 13, o
   ` : '';
 
   return `
-    <svg viewBox="0 0 100 160" width="${size}" height="${size * 1.6}"
+    <svg viewBox="0 0 100 160" width="100%" height="100%"
          xmlns="http://www.w3.org/2000/svg" class="person-svg">
       ${outlineLayer}
       <g stroke="${color}" stroke-width="${strokeWidth}" stroke-linecap="round" stroke-linejoin="round" fill="none">

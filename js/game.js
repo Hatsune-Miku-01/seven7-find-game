@@ -5,6 +5,10 @@ const LEVELS = [];
 let currentLevel = -1;
 let foundCount = 0;
 
+// 小人基准宽度，相对画布宽度的百分比；乘以每个小人的 scale 得到实际宽度
+// 用百分比而不是固定像素，这样全屏/窗口变化时比例都能跟着画布走
+const FIGURE_BASE_WIDTH_PERCENT = 9;
+
 const stage = document.getElementById('stage');
 const counterEl = document.getElementById('counter');
 const levelNameEl = document.getElementById('level-name');
@@ -137,7 +141,8 @@ function loadLevel(index) {
     el.className = 'figure';
     el.style.left = `${fig.x}%`;
     el.style.top = `${fig.y}%`;
-    el.style.transform = `translate(-50%, -50%) scale(${fig.scale}) rotate(${fig.rotate}deg)`;
+    el.style.width = `${FIGURE_BASE_WIDTH_PERCENT * fig.scale}%`;
+    el.style.transform = `translate(-50%, -50%) rotate(${fig.rotate}deg)`;
     el.innerHTML = personSVG(fig.pose, { color: fig.tint });
     el.addEventListener('click', () => onFigureClick(el, level.figures.length));
     stage.appendChild(el);
