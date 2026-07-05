@@ -44,7 +44,7 @@ hintBtn.addEventListener('click', () => {
   target.classList.add('hint-flash');
   setTimeout(() => {
     target.classList.remove('hint-flash');
-  }, 3000);
+  }, 10000);
 });
 
 const PENALTY_MESSAGES = ['我是钢板', '我是AA', '我没有FF'];
