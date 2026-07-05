@@ -50,9 +50,11 @@ hintBtn.addEventListener('click', () => {
   const unfoundEls = [...stage.querySelectorAll('.figure')].filter(
     (el) => !el.classList.contains('found')
   );
-  unfoundEls.forEach((el) => el.classList.add('hint-flash'));
+  if (unfoundEls.length === 0) return;
+  const target = unfoundEls[Math.floor(Math.random() * unfoundEls.length)];
+  target.classList.add('hint-flash');
   setTimeout(() => {
-    unfoundEls.forEach((el) => el.classList.remove('hint-flash'));
+    target.classList.remove('hint-flash');
   }, 3000);
 });
 
