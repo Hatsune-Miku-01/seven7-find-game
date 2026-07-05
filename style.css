@@ -117,6 +117,14 @@ body.page-fullscreen #stage {
   animation: hint-flash 0.5s ease-in-out 20;
 }
 
+.figure.hint-flash .person-svg circle,
+.figure.hint-flash .person-svg line {
+  stroke: #ef4444 !important;
+}
+.figure.hint-flash .person-svg circle {
+  fill: #ef4444 !important;
+}
+
 #hint-cost {
   font-size: 0.85rem;
   color: #eee;
