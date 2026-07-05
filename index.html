@@ -19,15 +19,19 @@
       <input type="number" id="fig-count" min="2" max="10" value="7" />
     </label>
     <button id="regenerate-btn">重新生成</button>
-    <button id="fullscreen-btn">全屏</button>
   </div>
+
+  <button id="fullscreen-btn">全屏</button>
 
   <div id="hud">
     <span id="level-name"></span>
     <span id="counter"></span>
+    <span id="timer">00:00</span>
     <span id="win-message" class="hidden"></span>
     <button id="prev-btn" class="hidden">上一关</button>
     <button id="next-btn" class="hidden">下一关</button>
+    <button id="hint-btn">提示</button>
+    <span id="hint-cost">代价：早播 +1.5 小时</span>
   </div>
   <div id="stage"></div>
 

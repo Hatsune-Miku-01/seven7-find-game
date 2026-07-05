@@ -21,6 +21,40 @@ const regenerateBtn = document.getElementById('regenerate-btn');
 const penaltyOverlay = document.getElementById('penalty-overlay');
 const penaltyText = document.getElementById('penalty-text');
 const penaltyConfirm = document.getElementById('penalty-confirm');
+const timerEl = document.getElementById('timer');
+const hintBtn = document.getElementById('hint-btn');
+
+// 总计时，从 0 开始一直往上计（不分关卡），提示按钮会给它加罚时
+let elapsedSeconds = 0;
+
+function formatTimer(totalSeconds) {
+  const m = Math.floor(totalSeconds / 60);
+  const s = Math.floor(totalSeconds % 60);
+  return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+}
+
+function updateTimerDisplay() {
+  timerEl.textContent = formatTimer(elapsedSeconds);
+}
+
+setInterval(() => {
+  elapsedSeconds += 1;
+  updateTimerDisplay();
+}, 1000);
+
+hintBtn.addEventListener('click', () => {
+  if (currentLevel === -1) return;
+  elapsedSeconds += 90; // 罚时 1.5 分钟，对应"早播 +1.5 小时"的梗
+  updateTimerDisplay();
+
+  const unfoundEls = [...stage.querySelectorAll('.figure')].filter(
+    (el) => !el.classList.contains('found')
+  );
+  unfoundEls.forEach((el) => el.classList.add('hint-flash'));
+  setTimeout(() => {
+    unfoundEls.forEach((el) => el.classList.remove('hint-flash'));
+  }, 3000);
+});
 
 const PENALTY_MESSAGES = ['我是钢板', '我是AA', '我没有FF'];
 
@@ -40,12 +74,16 @@ stage.addEventListener('click', (e) => {
   }
 });
 
+// 用 CSS 撑满视口来模拟"全屏"，而不是调用浏览器原生 Fullscreen API，
+// 因为原生全屏只会渲染 #stage 内部内容，penalty 弹窗这类页面级浮层会被挡住看不到
 const fullscreenBtn = document.getElementById('fullscreen-btn');
 fullscreenBtn.addEventListener('click', () => {
-  if (!document.fullscreenElement) {
-    stage.requestFullscreen();
-  } else {
-    document.exitFullscreen();
+  document.body.classList.toggle('page-fullscreen');
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    document.body.classList.remove('page-fullscreen');
   }
 });
 
