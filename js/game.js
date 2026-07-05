@@ -24,16 +24,16 @@ const penaltyConfirm = document.getElementById('penalty-confirm');
 const timerEl = document.getElementById('timer');
 const hintBtn = document.getElementById('hint-btn');
 
-// 纯累加显示，不是计时器：从 0 开始，每点一次提示 +1.5
+// 纯累加显示，不是计时器：从 0 开始，每点一次提示 +10 分钟
 let hintPenalty = 0;
 
 function updateTimerDisplay() {
-  timerEl.textContent = String(hintPenalty);
+  timerEl.textContent = `${hintPenalty} 分钟`;
 }
 
 hintBtn.addEventListener('click', () => {
   if (currentLevel === -1) return;
-  hintPenalty += 1.5; // 对应"早播 +1.5 小时"的梗
+  hintPenalty += 10;
   updateTimerDisplay();
 
   const unfoundEls = [...stage.querySelectorAll('.figure')].filter(
