@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>seven7酱 四周年找人小游戏</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>找找看 · seven7酱四周年</h1>
+
+  <div id="controls">
+    <label>
+      添加背景图：
+      <input type="file" id="bg-upload" accept="image/*" multiple />
+    </label>
+    <label>
+      小人数量：
+      <input type="number" id="fig-count" min="2" max="10" value="7" />
+    </label>
+    <button id="regenerate-btn">重新生成</button>
+  </div>
+
+  <div id="hud">
+    <span id="level-name"></span>
+    <span id="counter"></span>
+    <span id="win-message" class="hidden"></span>
+    <button id="prev-btn" class="hidden">上一关</button>
+    <button id="next-btn" class="hidden">下一关</button>
+  </div>
+  <div id="stage"></div>
+
+  <div id="penalty-overlay" class="hidden">
+    <div id="penalty-box">
+      <p id="penalty-text"></p>
+      <button id="penalty-confirm">同意</button>
+    </div>
+  </div>
+
+  <script src="js/person.js"></script>
+  <script src="js/game.js"></script>
+</body>
+</html>

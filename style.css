@@ -1,0 +1,136 @@
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  background: #111;
+  color: #eee;
+  font-family: system-ui, -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+  padding: 20px;
+}
+
+h1 {
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+#controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  font-size: 0.95rem;
+  background: #1a1a1a;
+  padding: 10px 16px;
+  border-radius: 8px;
+}
+
+#controls input[type="number"] {
+  width: 50px;
+}
+
+#hud {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-size: 1.1rem;
+}
+
+#stage {
+  position: relative;
+  width: min(90vw, 900px);
+  aspect-ratio: 16 / 9;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+  background-size: cover;
+  background-position: center;
+}
+
+.figure {
+  position: absolute;
+  cursor: pointer;
+  mix-blend-mode: soft-light;
+  opacity: 0.92;
+  filter: drop-shadow(2px 6px 4px rgba(0, 0, 0, 0.35));
+  transition: filter 0.2s ease;
+}
+
+.figure:hover {
+  filter: drop-shadow(2px 6px 4px rgba(0, 0, 0, 0.35)) brightness(1.15);
+}
+
+.figure.found {
+  mix-blend-mode: normal;
+  opacity: 1;
+  filter: drop-shadow(0 0 10px #4ade80) drop-shadow(0 0 4px #4ade80);
+}
+
+.figure.found .person-svg circle,
+.figure.found .person-svg line {
+  stroke: #4ade80 !important;
+}
+.figure.found .person-svg circle {
+  fill: #4ade80 !important;
+}
+
+#win-message {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #4ade80;
+}
+
+.hidden {
+  display: none;
+}
+
+#penalty-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+#penalty-overlay.hidden {
+  display: none;
+}
+
+#penalty-box {
+  background: #1e1e1e;
+  border: 2px solid #f87171;
+  border-radius: 12px;
+  padding: 32px 40px;
+  text-align: center;
+  max-width: 320px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+}
+
+#penalty-text {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin: 0 0 20px;
+  color: #f87171;
+}
+
+button {
+  padding: 8px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  background: #4ade80;
+  color: #111;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button:hover {
+  background: #6ee7a0;
+}
