@@ -183,6 +183,7 @@ function loadLevel(index) {
 function onFigureClick(el, total) {
   if (el.classList.contains('found')) return;
   el.classList.add('found');
+  el.classList.remove('hint-flash');
   foundCount += 1;
   counterEl.textContent = `${foundCount} / ${total}`;
 
