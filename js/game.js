@@ -36,6 +36,15 @@ stage.addEventListener('click', (e) => {
   }
 });
 
+const fullscreenBtn = document.getElementById('fullscreen-btn');
+fullscreenBtn.addEventListener('click', () => {
+  if (!document.fullscreenElement) {
+    stage.requestFullscreen();
+  } else {
+    document.exitFullscreen();
+  }
+});
+
 const sampleCanvas = document.createElement('canvas');
 const sampleCtx = sampleCanvas.getContext('2d', { willReadFrequently: true });
 
