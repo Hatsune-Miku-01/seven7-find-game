@@ -24,27 +24,16 @@ const penaltyConfirm = document.getElementById('penalty-confirm');
 const timerEl = document.getElementById('timer');
 const hintBtn = document.getElementById('hint-btn');
 
-// 总计时，从 0 开始一直往上计（不分关卡），提示按钮会给它加罚时
-let elapsedSeconds = 0;
-
-function formatTimer(totalSeconds) {
-  const m = Math.floor(totalSeconds / 60);
-  const s = Math.floor(totalSeconds % 60);
-  return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
-}
+// 纯累加显示，不是计时器：从 0 开始，每点一次提示 +1.5
+let hintPenalty = 0;
 
 function updateTimerDisplay() {
-  timerEl.textContent = formatTimer(elapsedSeconds);
+  timerEl.textContent = String(hintPenalty);
 }
-
-setInterval(() => {
-  elapsedSeconds += 1;
-  updateTimerDisplay();
-}, 1000);
 
 hintBtn.addEventListener('click', () => {
   if (currentLevel === -1) return;
-  elapsedSeconds += 90; // 罚时 1.5 分钟，对应"早播 +1.5 小时"的梗
+  hintPenalty += 1.5; // 对应"早播 +1.5 小时"的梗
   updateTimerDisplay();
 
   const unfoundEls = [...stage.querySelectorAll('.figure')].filter(
